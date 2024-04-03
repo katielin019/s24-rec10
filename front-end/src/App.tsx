@@ -120,9 +120,9 @@ class App extends React.Component<Props, GameState> {
     return (
       <div>
         <div id="instructions">
-          {/* should indicate whose turn it is or who has won the game (if applicable) */}
-          {/* If GameState.gameOver === true, GameState.nextPlayer will not be updated, and the winner is "nextPlayer" */}
-          {this.state.gameOver ? <p>Player {this.state.nextPlayer === 0 ? 'O' : 'X'} wins!</p> : <p>Player {this.state.nextPlayer === 0 ? 'X' : 'O'}'s turn</p>}
+          { this.state.gameOver ?
+            <p>Player {this.state.nextPlayer === 0 ? 'X' : 'O'} wins!</p> :
+            <p>Player {this.state.nextPlayer === 0 ? 'X' : 'O'}'s turn</p> }
         </div>
         <div id="board">
           {this.state.cells.map((cell, i) => this.createCell(cell, i))}
