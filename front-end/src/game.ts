@@ -1,6 +1,7 @@
 interface GameState {
   nextPlayer: number;
   gameOver: boolean;
+  winner: number;
   cells: Cell[];
 }
 

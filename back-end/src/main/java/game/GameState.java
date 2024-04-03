@@ -6,17 +6,29 @@ public class GameState {
 
     private final Cell[] cells;
     private final Player nextPlayer;
+    private final int winner;
     private final boolean gameOver;
 
     private GameState(Cell[] cells, Player player, boolean gameOver) {
         this.cells = cells;
         this.nextPlayer = player;
+        this.winner = -1;
         this.gameOver = gameOver;
+    }
+
+    private GameState(Cell[] cells, Player player, int winner) {
+        this.cells = cells;
+        this.nextPlayer = player;
+        this.winner = winner;
+        this.gameOver = true;
     }
 
     public static GameState forGame(Game game) {
         Cell[] cells = getCells(game);
-        return new GameState(cells, game.getPlayer(), game.getWinner() != null);
+        if (game.getWinner() != null) {
+            return new GameState(cells, game.getPlayer(), game.getWinner().value);
+        }
+        return new GameState(cells, game.getPlayer(), game.isGameOver());
     }
 
     public Cell[] getCells() {
@@ -33,9 +45,10 @@ public class GameState {
                 { 
                     "nextPlayer": %d,
                     "gameOver": %b,
+                    "winner": %d,
                     "cells": %s
                 }
-                """.formatted(this.nextPlayer.value, this.gameOver, Arrays.toString(this.cells));
+                """.formatted(this.nextPlayer.value, this.gameOver, this.winner, Arrays.toString(this.cells));
     }
 
     private static Cell[] getCells(Game game) {

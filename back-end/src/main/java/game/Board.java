@@ -25,4 +25,8 @@ public class Board {
         newCells[y * 3 + x] = player;
         return new Board(newCells);
     }
+
+    public boolean isFull() {
+        return Arrays.stream(this.cells).allMatch(cell -> cell != null);
+    }
 }

@@ -75,4 +75,8 @@ public class Game {
             return board.getCell(1, 1);
         return null;
     }
+
+    public boolean isGameOver() {
+        return this.getWinner() != null || (this.getWinner() == null && this.board.isFull());
+    }
 }
