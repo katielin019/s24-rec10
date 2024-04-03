@@ -121,7 +121,7 @@ class App extends React.Component<Props, GameState> {
       <div>
         <div id="instructions">
           { this.state.gameOver ?
-            <p>Player {this.state.nextPlayer === 0 ? 'X' : 'O'} wins!</p> :
+            <p>Player {this.state.nextPlayer === 0 ? 'O' : 'X'} wins!</p> :
             <p>Player {this.state.nextPlayer === 0 ? 'X' : 'O'}'s turn</p> }
         </div>
         <div id="board">
