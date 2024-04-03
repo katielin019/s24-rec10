@@ -9,7 +9,9 @@ class BoardCell extends React.Component<Props> {
   render(): React.ReactNode {
     const playable = this.props.cell.playable ? 'playable' : '';
     return (
-      <div className={`cell ${playable}`}>{this.props.cell.text}</div>
+      <div className={`cell ${playable}`}>
+        <p>{this.props.cell.text}</p>
+        </div>
     )
   }
 }
