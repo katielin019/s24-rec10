@@ -34,7 +34,7 @@ class App extends React.Component<Props, GameState> {
     /**
      * state has type GameState as specified in the class inheritance.
      */
-    this.state = { cells: [] }
+    this.state = { nextPlayer: 0, gameOver: false, cells: [] }
   }
 
   /**
@@ -45,7 +45,9 @@ class App extends React.Component<Props, GameState> {
   newGame = async () => {
     const response = await fetch('/newgame');
     const json = await response.json();
-    this.setState({ cells: json['cells'] });
+    this.setState({ nextPlayer: json['nextPlayer'],
+                    gameOver: json['gameOver'],
+                    cells: json['cells'] });
   }
 
   /**
@@ -61,7 +63,9 @@ class App extends React.Component<Props, GameState> {
       e.preventDefault();
       const response = await fetch(`/play?x=${x}&y=${y}`)
       const json = await response.json();
-      this.setState({ cells: json['cells'] });
+      this.setState({ nextPlayer: json['nextPlayer'],
+                    gameOver: json['gameOver'],
+                    cells: json['cells'] });
     }
   }
 
@@ -115,6 +119,11 @@ class App extends React.Component<Props, GameState> {
      */
     return (
       <div>
+        <div id="instructions">
+          {/* should indicate whose turn it is or who has won the game (if applicable) */}
+          {/* If GameState.gameOver === true, GameState.nextPlayer will not be updated, and the winner is "nextPlayer" */}
+          {this.state.gameOver ? <p>Player {this.state.nextPlayer === 0 ? 'O' : 'X'} wins!</p> : <p>Player {this.state.nextPlayer === 0 ? 'X' : 'O'}'s turn</p>}
+        </div>
         <div id="board">
           {this.state.cells.map((cell, i) => this.createCell(cell, i))}
         </div>
