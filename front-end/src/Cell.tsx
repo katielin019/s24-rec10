@@ -11,7 +11,10 @@ class BoardCell extends React.Component<Props> {
     return (
       <div className={`cell ${playable}`}>
         <p>{this.props.cell.text}</p>
+        <div className="stacks">
+          <div className="rectangle1"></div>
         </div>
+      </div>
     )
   }
 }
