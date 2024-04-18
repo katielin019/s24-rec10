@@ -32,6 +32,22 @@ public class Game {
         this.history = history;
     }
 
+    public void knockKnock(String name) {
+        if (name == "me") {
+            itsMe();
+        } else {
+            itsSomeoneElse();
+        }
+    }
+
+    private void itsMe() {
+        System.out.println("Who's there?");
+    }
+
+    private void itsSomeoneElse() {
+        System.out.println("Go away! " + this.player + " is playing.");
+    }
+
     public Board getBoard() {
         return this.board;
     }
